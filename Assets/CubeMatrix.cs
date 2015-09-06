@@ -16,6 +16,7 @@ public class CubeMatrix : MonoBehaviour {
 
 	List<List<GameObject>> matrix;
 	HSBColor hsbColor;
+	GameObject tempCube;//used to hold reference to cube as it is modified
 	
 	// Use this for initialization
 	void Start () {
@@ -49,54 +50,30 @@ public class CubeMatrix : MonoBehaviour {
 		while (i<bins){
 			float value = spectrum[i] * Multiplier;
 			for (int j=0;j<bins*2;j++){
-				
-				Vector3 scale = matrix[i][j].transform.localScale;
-				scale.y += value*inputMultiplier;
-				scale.y *= dampening;//depreciation
-				if (scale.y > binMaxHeight)
-					scale.y = binMaxHeight;
-				matrix[i][j].transform.localScale = scale;
-				matrix[i][j].transform.position = new Vector3(matrix[i][j].transform.position.x, matrix[i][j].transform.localScale.y/2, matrix[i][j].transform.position.z);
 
-				if (colorsEnabled)
-					hsbColor = new HSBColor(scale.y/binMaxHeight,1.0f,1.0f,1.0f);
-				matrix[i][j].gameObject.GetComponent<Renderer>().material.color = hsbColor.ToColor();
-				
-				scale = matrix[j][i].transform.localScale;
-				scale.y += value*inputMultiplier;
-				scale.y *= dampening;//depreciation
-				if (scale.y > binMaxHeight)
-					scale.y = binMaxHeight;
-				matrix[j][i].transform.localScale = scale;
-				matrix[j][i].transform.position = new Vector3(matrix[j][i].transform.position.x, matrix[j][i].transform.localScale.y/2, matrix[j][i].transform.position.z);
+				for (int k = 0;k<=3;k++){//for each quadrant
+					if (k==0)
+						tempCube = matrix[i][j];
+					else if (k==1)
+						tempCube = matrix[j][i];
+					else if (k==2)
+						tempCube = matrix[j][lastBinIndex-i];
+					else if (k==3)
+						tempCube = matrix[lastBinIndex-i][j];
 
-				if (colorsEnabled)
-					hsbColor = new HSBColor(scale.y/binMaxHeight,1.0f,1.0f,1.0f);
-				matrix[j][i].gameObject.GetComponent<Renderer>().material.color = hsbColor.ToColor();
-				
-				scale = matrix[j][lastBinIndex-i].transform.localScale;
-				scale.y += value*inputMultiplier;
-				scale.y *= dampening;//depreciation
-				if (scale.y > binMaxHeight)
-					scale.y = binMaxHeight;
-				matrix[j][lastBinIndex-i].transform.localScale = scale;
-				matrix[j][lastBinIndex-i].transform.position = new Vector3(matrix[j][lastBinIndex-i].transform.position.x, matrix[j][lastBinIndex-i].transform.localScale.y/2, matrix[j][lastBinIndex-i].transform.position.z);
-				if (colorsEnabled)
-					hsbColor = new HSBColor(scale.y/binMaxHeight,1.0f,1.0f,1.0f);
-				matrix[j][lastBinIndex-i].gameObject.GetComponent<Renderer>().material.color = hsbColor.ToColor();
-				
-				scale = matrix[lastBinIndex-i][j].transform.localScale;
-				scale.y += value*inputMultiplier;
-				scale.y *= dampening;//depreciation
-				if (scale.y > binMaxHeight)
-					scale.y = binMaxHeight;
-				matrix[lastBinIndex-i][j].transform.localScale = scale;
-				matrix[lastBinIndex-i][j].transform.position = new Vector3(matrix[lastBinIndex-i][j].transform.position.x, matrix[lastBinIndex-i][j].transform.localScale.y/2, matrix[lastBinIndex-i][j].transform.position.z);
+					//modify the selected cube
+					Vector3 scale = tempCube.transform.localScale;
+					scale.y += value*inputMultiplier;
+					scale.y *= dampening;//depreciation
+					if (scale.y > binMaxHeight)
+						scale.y = binMaxHeight;
+					tempCube.transform.localScale = scale;
+					tempCube.transform.position = new Vector3(tempCube.transform.position.x, tempCube.transform.localScale.y/2, tempCube.transform.position.z);
 
-				if (colorsEnabled)
-					hsbColor = new HSBColor(scale.y/binMaxHeight,1.0f,1.0f,1.0f);
-				matrix[lastBinIndex-i][j].gameObject.GetComponent<Renderer>().material.color = hsbColor.ToColor();
-
+					if (colorsEnabled)
+						hsbColor = new HSBColor(scale.y/binMaxHeight,1.0f,1.0f,1.0f);
+					tempCube.gameObject.GetComponent<Renderer>().material.color = hsbColor.ToColor();
+				}
 			}
 			i++;
 		}
