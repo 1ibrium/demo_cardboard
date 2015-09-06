@@ -77,7 +77,6 @@ PlayerSettings:
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
-  virtualRealitySupported: 0
   productGUID: 51b0959b1e68b445ba0e9142a6db3123
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16
@@ -255,6 +254,7 @@ PlayerSettings:
   psp2InfoBarOnStartup: 0
   psp2InfoBarColor: 0
   psmSplashimage: {fileID: 0}
+  virtualRealitySupported: 0
   spritePackerPolicy: 
   scriptingDefineSymbols: {}
   metroPackageName: Cardborked
