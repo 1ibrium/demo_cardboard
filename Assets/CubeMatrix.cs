@@ -8,6 +8,7 @@ public class CubeMatrix : MonoBehaviour {
 	public float Multiplier = 200;
 	public int bins = 25;
 	public bool colorsEnabled = true;
+	public bool rotates = true;
 	float binMaxHeight = 20.0f;
 	float inputMultiplier = 0.15f;
 	float dampening = 0.9f;
@@ -29,7 +30,7 @@ public class CubeMatrix : MonoBehaviour {
 			List<GameObject> row = new List<GameObject>();
 			for (int j=0;j<bins*2;j++){
 				GameObject temp = Instantiate(cubePrefab, new Vector3(i*binSpacing+0.5f-bins*binSpacing,0.0f,j*binSpacing + 0.5f - bins*binSpacing),Quaternion.identity) as GameObject;
-				//temp.transform.parent = transform;
+				temp.transform.parent = transform;
 				row.Add(temp);
 			}
 			matrix.Add(row);
@@ -38,6 +39,8 @@ public class CubeMatrix : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (rotates)
+			transform.Rotate(new Vector3(0,-Time.deltaTime*10,0));
 		
 		int i = 0;
 		

@@ -117,7 +117,8 @@ MonoBehaviour:
   cubePrefab: {fileID: 180916, guid: 9c3ad19f5e41e47439e6573ee16109f9, type: 2}
   Multiplier: 100
   bins: 20
-  colorsEnabled: 0
+  colorsEnabled: 1
+  rotates: 1
   SA: {fileID: 764881511}
 --- !u!4 &312323002
 Transform:
