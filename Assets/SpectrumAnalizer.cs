@@ -9,7 +9,9 @@ public class SpectrumAnalizer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		int num = 128;
+		float[] spectrum = AS.GetSpectrumData(num, 0, FFTWindow.Blackman);
+		spectrumValues = new List<float>();
 	}
 	
 	// Update is called once per frame

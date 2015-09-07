@@ -46,7 +46,10 @@ public class CubeMatrix : MonoBehaviour {
 			hsbColor = new HSBColor(Color.white);
 		
 		while (i<bins){
-			float value = SA.spectrumValues[i] * Multiplier;
+			float value = 0;
+			try{
+				value = SA.spectrumValues[i] * Multiplier;
+			}catch{}
 			for (int j=0;j<bins*2;j++){
 
 				for (int k = 0;k<=3;k++){//for each quadrant

@@ -30,7 +30,10 @@ public class SpinningTower : MonoBehaviour {
 		int lastBinIndex = (bins) - 1;
 		
 		while (i<bins){
-			float value = SA.spectrumValues[i] * Multiplier;
+			float value = 0;
+			try{
+				value = SA.spectrumValues[i] * Multiplier;
+			}catch{}
 			if (!Clockwise)
 				matrix[i].transform.Rotate(new Vector3(0,-value,0));
 			else
