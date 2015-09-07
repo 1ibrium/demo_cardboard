@@ -12,7 +12,7 @@ public class CubeMatrix : MonoBehaviour {
 	float inputMultiplier = 0.15f;
 	float dampening = 0.9f;
 	float binSpacing = 2.0f;
-	public AudioSource AS;
+	public SpectrumAnalizer SA;
 
 	List<List<GameObject>> matrix;
 	HSBColor hsbColor;
@@ -39,8 +39,6 @@ public class CubeMatrix : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		int num = 128;
-		float[] spectrum = AS.GetSpectrumData(num, 0, FFTWindow.Blackman);
 		int i = 0;
 		
 		int lastBinIndex = (bins * 2) - 1;
@@ -48,7 +46,7 @@ public class CubeMatrix : MonoBehaviour {
 			hsbColor = new HSBColor(Color.white);
 		
 		while (i<bins){
-			float value = spectrum[i] * Multiplier;
+			float value = SA.spectrumValues[i] * Multiplier;
 			for (int j=0;j<bins*2;j++){
 
 				for (int k = 0;k<=3;k++){//for each quadrant

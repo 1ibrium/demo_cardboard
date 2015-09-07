@@ -117,8 +117,8 @@ MonoBehaviour:
   cubePrefab: {fileID: 100010, guid: 07912a345caa04cc0812c17950c988db, type: 3}
   Multiplier: 150
   bins: 20
-  AS: {fileID: 1963785221}
   Clockwise: 1
+  SA: {fileID: 282093457}
 --- !u!4 &61792568
 Transform:
   m_ObjectHideFlags: 0
@@ -538,6 +538,47 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 274324477}
+--- !u!1 &282093455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 282093456}
+  - 114: {fileID: 282093457}
+  m_Layer: 0
+  m_Name: SpectrumAnalizer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &282093456
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 282093455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 40, z: -40}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+--- !u!114 &282093457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 282093455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 788b1bb80e22a48deb64bb8b98c72f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spectrumValues: []
+  AS: {fileID: 1963785221}
 --- !u!1 &312323000
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +609,8 @@ MonoBehaviour:
   cubePrefab: {fileID: 180916, guid: 9c3ad19f5e41e47439e6573ee16109f9, type: 2}
   Multiplier: 100
   bins: 10
-  AS: {fileID: 1963785221}
+  colorsEnabled: 1
+  SA: {fileID: 0}
 --- !u!4 &312323002
 Transform:
   m_ObjectHideFlags: 0
@@ -886,8 +928,8 @@ MonoBehaviour:
   cubePrefab: {fileID: 100010, guid: 07912a345caa04cc0812c17950c988db, type: 3}
   Multiplier: 150
   bins: 20
-  AS: {fileID: 1963785221}
   Clockwise: 1
+  SA: {fileID: 282093457}
 --- !u!4 &678857463
 Transform:
   m_ObjectHideFlags: 0
@@ -1423,8 +1465,8 @@ MonoBehaviour:
   cubePrefab: {fileID: 100010, guid: 07912a345caa04cc0812c17950c988db, type: 3}
   Multiplier: 150
   bins: 20
-  AS: {fileID: 1963785221}
   Clockwise: 1
+  SA: {fileID: 282093457}
 --- !u!4 &1176734883
 Transform:
   m_ObjectHideFlags: 0
@@ -1622,8 +1664,8 @@ MonoBehaviour:
   cubePrefab: {fileID: 100010, guid: 07912a345caa04cc0812c17950c988db, type: 3}
   Multiplier: 150
   bins: 20
-  AS: {fileID: 1963785221}
   Clockwise: 1
+  SA: {fileID: 282093457}
 --- !u!4 &1315516906
 Transform:
   m_ObjectHideFlags: 0

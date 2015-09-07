@@ -7,8 +7,8 @@ public class SpinningTower : MonoBehaviour {
 	public GameObject cubePrefab;
 	public float Multiplier = 0.5f;
 	public int bins = 25;
-	public AudioSource AS;
 	public bool Clockwise = true;
+	public SpectrumAnalizer SA;
 
 	List<GameObject> matrix;
 
@@ -25,14 +25,12 @@ public class SpinningTower : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		int num = 128;
-		float[] spectrum = AS.GetSpectrumData(num, 0, FFTWindow.Blackman);
 		int i = 0;
 		
 		int lastBinIndex = (bins) - 1;
 		
 		while (i<bins){
-			float value = spectrum[i] * Multiplier;
+			float value = SA.spectrumValues[i] * Multiplier;
 			if (!Clockwise)
 				matrix[i].transform.Rotate(new Vector3(0,-value,0));
 			else
