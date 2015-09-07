@@ -116,8 +116,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 180916, guid: 9c3ad19f5e41e47439e6573ee16109f9, type: 2}
   Multiplier: 100
-  bins: 10
-  colorsEnabled: 1
+  bins: 20
+  colorsEnabled: 0
   SA: {fileID: 764881511}
 --- !u!4 &312323002
 Transform:
@@ -245,15 +245,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 40
+      value: 37.4799995
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -40
+      value: -40.9900017
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .342020184
+      value: .230502382
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}
       propertyPath: m_LocalRotation.y
@@ -265,7 +265,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .939692616
+      value: .973071754
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: b8b03d395f5734e98af91ccf44f9bf47, type: 2}
       propertyPath: m_RootOrder
@@ -417,7 +417,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1ad736e408bc4458ca6e753eff244fce, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 0ec425c1ffca144d7b64ec5f8dd2947c, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
