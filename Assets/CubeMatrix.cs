@@ -11,6 +11,7 @@ public class CubeMatrix : MonoBehaviour {
 	public bool rotates = true;
 	float binMaxHeight = 20.0f;
 	float inputMultiplier = 0.15f;
+	float MaxScaleDelta = 1.5f;
 	float dampening = 0.9f;
 	float binSpacing = 2.0f;
 	public SpectrumAnalizer SA;
@@ -40,7 +41,7 @@ public class CubeMatrix : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (rotates)
-			transform.Rotate(new Vector3(0,-Time.deltaTime*10,0));
+			transform.Rotate(new Vector3(0,-Time.deltaTime*7.5f,0));
 		
 		int i = 0;
 		
@@ -67,7 +68,12 @@ public class CubeMatrix : MonoBehaviour {
 
 					//modify the selected cube
 					Vector3 scale = tempCube.transform.localScale;
-					scale.y += value*inputMultiplier;
+					float scaleDelta = value*inputMultiplier;
+					if (scaleDelta > MaxScaleDelta)
+						scaleDelta = MaxScaleDelta;
+					else if (scaleDelta < -MaxScaleDelta)
+						scaleDelta = -MaxScaleDelta;
+					scale.y += scaleDelta;
 					scale.y *= dampening;//depreciation
 					if (scale.y > binMaxHeight)
 						scale.y = binMaxHeight;
