@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -30,7 +30,7 @@ public class CubeMatrix : MonoBehaviour {
 		for (int i=0; i<bins*2; i++) {
 			List<GameObject> row = new List<GameObject>();
 			for (int j=0;j<bins*2;j++){
-				GameObject temp = Instantiate(cubePrefab, new Vector3(i*binSpacing+0.5f-bins*binSpacing,0.0f,j*binSpacing + 0.5f - bins*binSpacing),Quaternion.identity) as GameObject;
+				GameObject temp = Instantiate(cubePrefab, new Vector3(transform.position.x + i*binSpacing+0.5f-bins*binSpacing,transform.position.y,j*binSpacing + 0.5f - bins*binSpacing + transform.position.z),Quaternion.identity) as GameObject;
 				temp.transform.parent = transform;
 				row.Add(temp);
 			}
@@ -81,7 +81,7 @@ public class CubeMatrix : MonoBehaviour {
 					tempCube.transform.position = new Vector3(tempCube.transform.position.x, tempCube.transform.localScale.y/2, tempCube.transform.position.z);
 
 					if (colorsEnabled)
-						hsbColor = new HSBColor(scale.y/binMaxHeight,1.0f,1.0f,1.0f);
+						hsbColor = new HSBColor((scale.y/binMaxHeight)/3.0f + 0.6666f,1.0f,1.0f,1.0f);
 					tempCube.gameObject.GetComponent<Renderer>().material.color = hsbColor.ToColor();
 				}
 			}
