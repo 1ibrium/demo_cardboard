@@ -13,7 +13,7 @@ public class CubeMatrix : MonoBehaviour {
 	float inputMultiplier = 0.15f;
 	float MaxScaleDelta = 1.5f;
 	float dampening = 0.9f;
-	float binSpacing = 2.0f;
+	float binSpacing = 1.0f;
 	public SpectrumAnalizer SA;
 
 	List<List<GameObject>> matrix;
@@ -52,7 +52,7 @@ public class CubeMatrix : MonoBehaviour {
 		while (i<bins){
 			float value = 0;
 			try{
-				value = SA.spectrumValues[i] * Multiplier;
+				value = SA.spectrumValues[i+3] * Multiplier;
 			}catch{}
 			for (int j=0;j<bins*2;j++){
 
@@ -81,7 +81,7 @@ public class CubeMatrix : MonoBehaviour {
 					tempCube.transform.position = new Vector3(tempCube.transform.position.x, tempCube.transform.localScale.y/2, tempCube.transform.position.z);
 
 					if (colorsEnabled)
-						hsbColor = new HSBColor((scale.y/binMaxHeight)/3.0f + 0.6666f,1.0f,1.0f,1.0f);
+						hsbColor = new HSBColor(((scale.y/binMaxHeight) + 0.575f)%1,1.0f,1.0f,1.0f);
 					tempCube.gameObject.GetComponent<Renderer>().material.color = hsbColor.ToColor();
 				}
 			}
