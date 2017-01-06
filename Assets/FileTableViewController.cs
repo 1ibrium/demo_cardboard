@@ -20,6 +20,8 @@ namespace FileTableViewControllerNS
 
 		public AudioSource audioSource;
 
+        //public GameObject player;
+
 
         int m_numRows;
         private int m_numInstancesCreated = 0;
@@ -53,9 +55,11 @@ namespace FileTableViewControllerNS
 			m_numRows = fileinfo.Length;
 
 			audioSource = audioSource.GetComponent<AudioSource> ();
+
+            //Debug.Log(GvrPointerManager.Pointer.ToString());
         }
 
-		void Awake(){
+        void Awake(){
 		}
 
 		void Update(){
