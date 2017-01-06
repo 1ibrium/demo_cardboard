@@ -43,7 +43,7 @@ namespace FileTableViewControllerNS
 
 			musicPath = Directory.GetCurrentDirectory ();
 			if (Application.platform == RuntimePlatform.Android)
-				musicPath += "sdcard/media";
+				musicPath += "sdcard/music";
 			else if (Application.platform == RuntimePlatform.OSXEditor)
 				musicPath += "";
 
