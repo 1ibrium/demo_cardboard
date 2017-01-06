@@ -91,6 +91,11 @@ namespace FileTableViewControllerNS
 						temp.GetComponent<Image>().color = new Color(0.5f, 0.5f, 1.0f, 0.5f);
 				}
 			}
+
+            if (GvrController.AppButtonDown)
+            {
+                audioSource.Stop();
+            }
 		}
 
         #region ITableViewDataSource
