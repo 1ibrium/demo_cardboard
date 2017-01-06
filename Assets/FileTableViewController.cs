@@ -15,6 +15,8 @@ namespace FileTableViewControllerNS
         public DetailTableCell m_cellPrefab;
         public TableView m_tableView;
 		public GameObject btnPlay;
+        public GameObject btnUp;
+        public GameObject btnDown;
 
 		public FileInfo[] fileinfo;
 
@@ -44,12 +46,18 @@ namespace FileTableViewControllerNS
             m_tableView.dataSource = this;
 
 			musicPath = Directory.GetCurrentDirectory ();
-			if (Application.platform == RuntimePlatform.Android)
-				musicPath += "sdcard/music";
-			else if (Application.platform == RuntimePlatform.OSXEditor)
-				musicPath += "";
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                musicPath += "sdcard/Music";
+            }
+            else if (Application.platform == RuntimePlatform.OSXEditor)
+            {
+                musicPath += "";
+            }
 
-			DirectoryInfo dir = new DirectoryInfo(musicPath);
+            btnUp.GetComponentInChildren<Text>().text = musicPath;
+
+            DirectoryInfo dir = new DirectoryInfo(musicPath);
 			fileinfo = dir.GetFiles("*.mp3");
 
 			m_numRows = fileinfo.Length;
