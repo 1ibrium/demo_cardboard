@@ -1,6 +1,8 @@
 # Google Cardboard Audio Visualizer
 A very basic VR demo in Unity using Google's Cardboard SDK. This project accepts an input audio file (preferably a 48kHz Stereo MP3) and displays a 3D visualization of the music based on a live audio analysis of the frequency amplitudes.
 
+⚠️[Presently, this build requires a pre-release version of Unity for Daydream (5.4.2f2-GVR13)](https://unity3d.com/partners/google/daydream)⚠️
+
 <p align="center"><img title="" src="https://github.com/madebyatomicrobot/demo_cardboard/raw/master/sample.gif"/></p>
 
 ### Quick Start
