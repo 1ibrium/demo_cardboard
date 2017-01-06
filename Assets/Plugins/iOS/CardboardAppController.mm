@@ -13,70 +13,57 @@
 // limitations under the License.
 
 #import "CardboardAppController.h"
-#import "CardboardView.h"
 
 extern "C" {
 
-extern void readProfile();
-extern void syncProfile();
-
-extern UIViewController* createSettingsDialog(id app);
-extern UIViewController* createOnboardingDialog(id app);
+extern void cardboardPause(bool paused);
+extern void createUiLayer(id app, UIView* view);
 
 bool isOpenGLAPI() {
-#if UNITY_VERSION < 463
-  return true;
-#else
-  CardboardAppController* app = (CardboardAppController *)GetAppController();
+  CardboardAppController *app = (CardboardAppController *)GetAppController();
   UnityRenderingAPI api = [app renderingAPI];
   return api == apiOpenGLES2 || api == apiOpenGLES3;
-#endif
 }
 
-void launchSettingsDialog() {
-  CardboardAppController* app = (CardboardAppController *)GetAppController();
-  [app startSettingsDialog:createSettingsDialog(app)];
+void finishActivityAndReturn(bool exitVR) {
+  CardboardAppController *app = (CardboardAppController *)GetAppController();
+  [app finishActivityAndReturn:exitVR];
 }
 
-void launchOnboardingDialog() {
-  CardboardAppController* app = (CardboardAppController *)GetAppController();
-  [app startSettingsDialog:createOnboardingDialog(app)];
-}
-
-void endSettingsDialog() {
-  CardboardAppController* app = (CardboardAppController *)GetAppController();
-  [app stopSettingsDialog];
-}
+// We have to manually register the Unity Audio Effect plugin.
+struct UnityAudioEffectDefinition;
+typedef int (*UnityPluginGetAudioEffectDefinitionsFunc)(
+    struct UnityAudioEffectDefinition*** descptr);
+extern void UnityRegisterAudioPlugin(
+    UnityPluginGetAudioEffectDefinitionsFunc getAudioEffectDefinitions);
+extern int UnityGetAudioEffectDefinitions(UnityAudioEffectDefinition*** definitionptr);
 
 }  // extern "C"
 
 @implementation CardboardAppController
 
-- (void)preStartUnity {
-  [super preStartUnity];
-  syncProfile();
-}
-
 - (UnityView *)createUnityView {
-  return [[CardboardView alloc] initFromMainScreen];
+  UnityRegisterViewControllerListener(self);
+  UnityRegisterAudioPlugin(UnityGetAudioEffectDefinitions);
+  UnityView* unity_view = [super createUnityView];
+  createUiLayer(self, (UIView *)unity_view);
+  return unity_view;
 }
 
-- (void)startSettingsDialog:(UIViewController*)dialog {
-  [self pause:YES];
-  [self.rootViewController presentViewController:dialog animated:NO completion:nil];
+- (UIViewController *)unityViewController {
+  return UnityGetGLViewController();
 }
 
-- (void)stopSettingsDialog {
-  [[self rootViewController] dismissViewControllerAnimated:NO completion:nil];
-  [self pause:NO];
+- (void)viewWillAppear:(NSNotification *)notification {
+  cardboardPause(false);
 }
 
-- (void)pause:(bool)paused {
-#if UNITY_VERSION < 462
-  UnityPause(paused);
-#else
-  self.paused = paused;
-#endif
+- (void)setPaused:(BOOL)paused {
+  [super setPaused:paused];
+  cardboardPause(paused == YES);
+}
+
+- (void)finishActivityAndReturn:(BOOL)exitVR {
 }
 
 @end

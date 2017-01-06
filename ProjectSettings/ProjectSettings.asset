@@ -94,7 +94,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.atomicrobot.cardboard
+  bundleIdentifier: com.atomicrobot.vr
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
@@ -106,11 +106,11 @@ PlayerSettings:
       enableTransitionView: 0
     google:
       depthFormat: 0
-      useSustainedPerformanceMode: 0
+      useSustainedPerformanceMode: 1
   vrSplashScreenShouldntTagAlong: 0
   protectGraphicsMemory: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 16
+  AndroidMinSdkVersion: 24
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   apiCompatibilityLevel: 2
@@ -472,7 +472,7 @@ PlayerSettings:
   - XboxOne::enus
   - iOS::VR::enable
   - tvOS::VR::enable
-  Android::VR::enable: 0
+  Android::VR::enable: 1
   Metro::VR::enable: 0
   N3DS::VR::enable: 0
   PS3::VR::enable: 0
@@ -536,7 +536,8 @@ PlayerSettings:
   - XboxOne::VR::enabledDevices
   - iOS::VR::enabledDevices
   - tvOS::VR::enabledDevices
-  Android::VR::enabledDevices: []
+  Android::VR::enabledDevices:
+  - daydream
   Metro::VR::enabledDevices: []
   N3DS::VR::enabledDevices: []
   PS3::VR::enabledDevices: []
