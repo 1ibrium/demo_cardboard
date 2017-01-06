@@ -106,7 +106,10 @@ namespace FileTableViewControllerNS
 
             if (GvrController.AppButtonDown)
             {
-                audioSource.Stop();
+                if (audioSource.isPlaying)
+                    audioSource.Pause();
+                else
+                    audioSource.UnPause();
             }
 		}
 
